@@ -107,14 +107,29 @@
 //El mismo código pero está hecho con Map e innerHtml
 
 const container = document.getElementById('movies-container');
-const urlApi = `http://localhost:8000/movies/`
+const containerForm = document.getElementById('form');
+const URL_API = `http://localhost:8000/movies`
 
 async function getMovies() {
-  const response = await fetch(urlApi, {
+  const response = await fetch(URL_API, {
     method: "GET",
     headers: { 'Content-Type': 'application/json' }
   });
   const data = await response.json();
+  
+  return data;
+}
+
+//Hacer servicio para obtener una película por ID
+
+async function getOneMovie(id) {
+  const response = await fetch(`${URL_API}/${id}`, {
+    method: "GET",
+    headers: { 'Content-Type': 'application/json' }
+  });
+  const data = await response.json();
+  console.log(data)
+
   return data;
 }
 
@@ -126,7 +141,7 @@ async function printMovies() {
       <div class="movie" id="movie-${movie.id}">
         Título: ${movie.name}, Género: ${movie.gender}, Director: ${movie.director}, Fecha de lanzamiento: ${movie['releaseDate']}
         <button class="buttonDelete" onclick="deleteMovies(${movie.id})">Delete</button>
-        <button class="buttonUpdate" onclick="updateMovies(${movie.id})">Update</button>
+        <button class="buttonUpdate" onclick="ShowUpdateMovie(${movie.id})">Update</button>
       </div>
     `;
   }).join(""); // Unir todos los elementos en un solo string
@@ -134,11 +149,12 @@ async function printMovies() {
 }
 
 async function deleteMovies(id) {
-  const response = await fetch(`${urlApi}${id}`, {
+  const response = await fetch(`${URL_API}/${id}`, {
     method: "DELETE",
     headers: { 'Content-Type': 'application/json' }
   });
   if (response.ok) {
+    printMovies();
     // const movieElement = document.getElementById(`movie-${id}`);
     // movieElement.remove(); // Eliminar el elemento directamente usando su ID
   } else {
@@ -158,7 +174,7 @@ async function createMovies() {
   let directorMovie = prompt("Ingrese el nombre del director");
   let releaseMovie = prompt("¿En qué año se ha lanzado la película?");
 
-  const response = await fetch(urlApi, {
+  const response = await fetch(URL_API, {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -179,25 +195,43 @@ addButton.addEventListener('click', () => {
 
 //Método Update, PUT
 
-async function updateMovies(id) {
-  let nameMovie = prompt("Ingrese el nombre de la película");
-  let genderMovie = prompt("Ingrese el género(Biografía, Aventura, Fantasía, Acción, etc)");
-  let directorMovie = prompt("Ingrese el nombre del director");
-  let releaseMovie = prompt("¿En qué año se ha lanzado la película?");
-
-  const response = await fetch(`${urlApi}${id}`, {
+async function ShowUpdateMovie(id) {
+  const elementDbMovie = await getOneMovie(id);
+  containerForm.innerHTML = `
+    <form action="">
+        <label for="mName">Nombre:</label><br>
+        <input type="text" id="mName" name="mName" value="${elementDbMovie.name}"><br>
+        
+        <label for="mGender">Género:</label><br>
+        <input type="text" id="mGender" name="mGender" value="${elementDbMovie.gender}"><br>
+        
+        <label for="mRelease">Año de lanzamiento:</label><br>
+        <input type="number" id="mRelease" name="mRelease" value="${elementDbMovie.releaseDate}"><br>
+        
+        <label for="mDirector">Director:</label><br>
+        <input type="text" id="mDirector" name="mDirector" value="${elementDbMovie.director}">  
+    </form>
+    <button class="saveMovie">Guardar</button>
+  `;
+}
+  // const mName = document.getElementById('mName').value;
+  // const mGender = document.getElementById('mGender').value;
+  // const mRelease = document.getElementById('mRelease').value;
+  // const mDirector = document.getElementById('mDirector').value;
+async function UpdateMovie(id) {
+  const response = await fetch(`${URL_API}/${id}`, {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      name: nameMovie,
-      gender: genderMovie,
-      director: directorMovie,
-      releaseDate: releaseMovie
+      name: mNAme,
+      gender: mGender,
+      releaseDate: mrelease,
+      director: mDirector,
+      
     })
   });
   const data = await response.json();
   return data
-  printMovies(); 
+  printMovies();
 }
 
-//Hacer servicio de obtener una movie
