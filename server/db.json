@@ -1,13 +1,6 @@
 {
   "movies": [
     {
-      "name": null,
-      "gender": null,
-      "director": null,
-      "releaseDate": null,
-      "id": "12"
-    },
-    {
       "id": "13",
       "name": "El Caballero Oscuro",
       "gender": "Acción, Crimen",

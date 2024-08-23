@@ -107,9 +107,10 @@
 //El mismo código pero está hecho con Map e innerHtml
 
 const container = document.getElementById('movies-container');
+const urlApi = `http://localhost:8000/movies/`
 
 async function getMovies() {
-  const response = await fetch(`http://localhost:8000/movies`, {
+  const response = await fetch(urlApi, {
     method: "GET",
     headers: { 'Content-Type': 'application/json' }
   });
@@ -133,7 +134,7 @@ async function printMovies() {
 }
 
 async function deleteMovies(id) {
-  const response = await fetch(`http://localhost:8000/movies/${id}`, {
+  const response = await fetch(`${urlApi}${id}`, {
     method: "DELETE",
     headers: { 'Content-Type': 'application/json' }
   });
@@ -149,13 +150,15 @@ printMovies();
 
 const addButton = document.getElementById("buttonAddMovie");
 
+//Método Create, POST
+
 async function createMovies() {
   let nameMovie = prompt("Ingrese el nombre de la película");
   let genderMovie = prompt("Ingrese el género(Biografía, Aventura, Fantasía, Acción, etc)");
   let directorMovie = prompt("Ingrese el nombre del director");
   let releaseMovie = prompt("¿En qué año se ha lanzado la película?");
 
-  const response = await fetch(`http://localhost:8000/movies`, {
+  const response = await fetch(urlApi, {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -174,13 +177,15 @@ addButton.addEventListener('click', () => {
   createMovies();
 });
 
+//Método Update, PUT
+
 async function updateMovies(id) {
   let nameMovie = prompt("Ingrese el nombre de la película");
   let genderMovie = prompt("Ingrese el género(Biografía, Aventura, Fantasía, Acción, etc)");
   let directorMovie = prompt("Ingrese el nombre del director");
   let releaseMovie = prompt("¿En qué año se ha lanzado la película?");
 
-  const response = await fetch(`http://localhost:8000/movies/${id}`, {
+  const response = await fetch(`${urlApi}${id}`, {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
