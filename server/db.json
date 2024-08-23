@@ -1,0 +1,165 @@
+{
+  "movies": [
+    {
+      "name": null,
+      "gender": null,
+      "director": null,
+      "releaseDate": null,
+      "id": "12"
+    },
+    {
+      "id": "13",
+      "name": "El Caballero Oscuro",
+      "gender": "Acción, Crimen",
+      "releaseDate": 2008,
+      "director": "Christopher Nolan"
+    },
+    {
+      "id": "14",
+      "name": "Forrest Gump",
+      "gender": "Drama, Romance",
+      "releaseDate": 1994,
+      "director": "Robert Zemeckis"
+    },
+    {
+      "id": "15",
+      "name": "Star Wars: Episodio V - El Imperio Contraataca",
+      "gender": "Acción, Aventura",
+      "releaseDate": 1980,
+      "director": "Irvin Kershner"
+    },
+    {
+      "id": "16",
+      "name": "La La Land",
+      "gender": "Comedia, Drama, Musical",
+      "releaseDate": 2016,
+      "director": "Damien Chazelle"
+    },
+    {
+      "id": "17",
+      "name": "El Rey León",
+      "gender": "Animación, Aventura",
+      "releaseDate": 1994,
+      "director": "Roger Allers, Rob Minkoff"
+    },
+    {
+      "id": "18",
+      "name": "Los Vengadores",
+      "gender": "Acción, Aventura",
+      "releaseDate": 2012,
+      "director": "Joss Whedon"
+    },
+    {
+      "id": "19",
+      "name": "Jurassic Park",
+      "gender": "Aventura, Ciencia Ficción",
+      "releaseDate": 1993,
+      "director": "Steven Spielberg"
+    },
+    {
+      "id": "20",
+      "name": "El Club de la Pelea",
+      "gender": "Drama",
+      "releaseDate": 1999,
+      "director": "David Fincher"
+    },
+    {
+      "id": "21",
+      "name": "Interstellar",
+      "gender": "Aventura, Ciencia Ficción",
+      "releaseDate": 2014,
+      "director": "Christopher Nolan"
+    },
+    {
+      "id": "22",
+      "name": "Coco",
+      "gender": "Animación, Aventura",
+      "releaseDate": 2017,
+      "director": "Lee Unkrich, Adrian Molina"
+    },
+    {
+      "id": "23",
+      "name": "El Gran Hotel Budapest",
+      "gender": "Comedia, Aventura",
+      "releaseDate": 2014,
+      "director": "Wes Anderson"
+    },
+    {
+      "id": "24",
+      "name": "El Origen",
+      "gender": "Acción, Ciencia Ficción",
+      "releaseDate": 2010,
+      "director": "Christopher Nolan"
+    },
+    {
+      "id": "25",
+      "name": "La Vida es Bella",
+      "gender": "Comedia, Drama",
+      "releaseDate": 1997,
+      "director": "Roberto Benigni"
+    },
+    {
+      "id": "26",
+      "name": "Mad Max: Furia en la Carretera",
+      "gender": "Acción, Aventura",
+      "releaseDate": 2015,
+      "director": "George Miller"
+    },
+    {
+      "id": "27",
+      "name": "Toy Story",
+      "gender": "Animación, Aventura",
+      "releaseDate": 1995,
+      "director": "John Lasseter"
+    },
+    {
+      "id": "28",
+      "name": "Whiplash",
+      "gender": "Drama, Musical",
+      "releaseDate": 2014,
+      "director": "Damien Chazelle"
+    },
+    {
+      "id": "29",
+      "name": "Avatar",
+      "gender": "Acción, Aventura",
+      "releaseDate": 2009,
+      "director": "James Cameron"
+    },
+    {
+      "id": "30",
+      "name": "El Resplandor",
+      "gender": "Horror, Drama",
+      "releaseDate": 1980,
+      "director": "Stanley Kubrick"
+    },
+    {
+      "id": "7562",
+      "name": "Prueba",
+      "gender": "Biografia",
+      "director": "Yo",
+      "releaseDate": "2024"
+    },
+    {
+      "id": "6e55",
+      "name": "agregando",
+      "gender": "fantasia",
+      "director": "sara",
+      "releaseDate": "2014"
+    },
+    {
+      "id": "04b1",
+      "name": "Aprendiendo Javascript",
+      "gender": "Fantasia",
+      "director": "Jonnatha",
+      "releaseDate": "2024"
+    },
+    {
+      "id": "9705",
+      "name": "fdffdf",
+      "gender": "fdfd",
+      "director": "fdfdf",
+      "releaseDate": "20"
+    }
+  ]
+}
