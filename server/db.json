@@ -153,6 +153,27 @@
       "gender": null,
       "director": null,
       "releaseDate": null
+    },
+    {
+      "id": "7063",
+      "name": "El junior en accion",
+      "gender": "drama",
+      "releaseDate": "2024",
+      "director": "yo"
+    },
+    {
+      "id": "4b39",
+      "name": "El junior vuelve",
+      "gender": "Accion",
+      "releaseDate": "2024",
+      "director": "Yo otra vez"
+    },
+    {
+      "id": "6dc6",
+      "name": "rapido y furioso",
+      "gender": "accion",
+      "releaseDate": "2010",
+      "director": "Yamato"
     }
   ]
 }

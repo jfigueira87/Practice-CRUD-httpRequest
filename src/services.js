@@ -116,7 +116,7 @@ async function getMovies() {
     headers: { 'Content-Type': 'application/json' }
   });
   const data = await response.json();
-  
+
   return data;
 }
 
@@ -165,28 +165,54 @@ async function deleteMovies(id) {
 printMovies();
 
 const addButton = document.getElementById("buttonAddMovie");
-
+addButton.addEventListener('click', () => {
+  showCreateMovies()
+})
 //Método Create, POST
 
-async function createMovies() {
-  let nameMovie = prompt("Ingrese el nombre de la película");
-  let genderMovie = prompt("Ingrese el género(Biografía, Aventura, Fantasía, Acción, etc)");
-  let directorMovie = prompt("Ingrese el nombre del director");
-  let releaseMovie = prompt("¿En qué año se ha lanzado la película?");
+async function showCreateMovies() {
+
+  containerForm.innerHTML = `
+    <form action="">
+        <label for="mName">Nombre:</label><br>
+        <input type="text" id="mName" name="mName"><br>
+        
+        <label for="mGender">Género:</label><br>
+        <input type="text" id="mGender" name="mGender"><br>
+        
+        <label for="mRelease">Año de lanzamiento:</label><br>
+        <input type="number" id="mRelease" name="mRelease"><br>
+        
+        <label for="mDirector">Director:</label><br>
+        <input type="text" id="mDirector" name="mDirector">  
+    </form>
+    <button class="saveMovie" onclick="createMovie()">Crear</button>
+  `;
+}
+
+async function createMovie() {
+
+  const mName = document.getElementById('mName').value;
+  const mGender = document.getElementById('mGender').value;
+  const mRelease = document.getElementById('mRelease').value;
+  const mDirector = document.getElementById('mDirector').value;
+
 
   const response = await fetch(URL_API, {
+
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      name: nameMovie,
-      gender: genderMovie,
-      director: directorMovie,
-      releaseDate: releaseMovie
+      name: mName,
+      gender: mGender,
+      releaseDate: mRelease,
+      director: mDirector,
+
     })
   });
   const data = await response.json();
+  printMovies();
   return data
-  printMovies(); // 
 }
 
 addButton.addEventListener('click', () => {
@@ -213,7 +239,6 @@ async function ShowUpdateMovie(id) {
     </form>
     <button class="saveMovie" onclick="UpdateMovie(${elementDbMovie.id})">Guardar</button>
   `;
-  console.log("click en guardar con el id: "+ elementDbMovie.id )
 }
 
 async function UpdateMovie(id) {
@@ -222,7 +247,6 @@ async function UpdateMovie(id) {
   const mGender = document.getElementById('mGender').value;
   const mRelease = document.getElementById('mRelease').value;
   const mDirector = document.getElementById('mDirector').value;
-  console.log("Este es el name actualizado "+mName)
 
   const response = await fetch(`${URL_API}/${id}`, {
     method: "PUT",
@@ -232,11 +256,12 @@ async function UpdateMovie(id) {
       gender: mGender,
       releaseDate: mRelease,
       director: mDirector,
-      
+
     })
   });
   const data = await response.json();
-  return data
   printMovies();
+  return data
+
 }
 
