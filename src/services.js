@@ -211,21 +211,26 @@ async function ShowUpdateMovie(id) {
         <label for="mDirector">Director:</label><br>
         <input type="text" id="mDirector" name="mDirector" value="${elementDbMovie.director}">  
     </form>
-    <button class="saveMovie">Guardar</button>
+    <button class="saveMovie" onclick="UpdateMovie(${elementDbMovie.id})">Guardar</button>
   `;
+  console.log("click en guardar con el id: "+ elementDbMovie.id )
 }
-  // const mName = document.getElementById('mName').value;
-  // const mGender = document.getElementById('mGender').value;
-  // const mRelease = document.getElementById('mRelease').value;
-  // const mDirector = document.getElementById('mDirector').value;
+
 async function UpdateMovie(id) {
+
+  const mName = document.getElementById('mName').value;
+  const mGender = document.getElementById('mGender').value;
+  const mRelease = document.getElementById('mRelease').value;
+  const mDirector = document.getElementById('mDirector').value;
+  console.log("Este es el name actualizado "+mName)
+
   const response = await fetch(`${URL_API}/${id}`, {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      name: mNAme,
+      name: mName,
       gender: mGender,
-      releaseDate: mrelease,
+      releaseDate: mRelease,
       director: mDirector,
       
     })

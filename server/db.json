@@ -1,13 +1,6 @@
 {
   "movies": [
     {
-      "id": "13",
-      "name": "El Caballero Oscuro",
-      "gender": "Acción, Crimen",
-      "releaseDate": 2008,
-      "director": "Christopher Nolan"
-    },
-    {
       "id": "14",
       "name": "Forrest Gump",
       "gender": "Drama, Romance",
@@ -148,11 +141,18 @@
       "releaseDate": "2024"
     },
     {
-      "id": "9705",
-      "name": "fdffdf",
+      "name": "jjjjj",
       "gender": "fdfd",
+      "releaseDate": "20",
       "director": "fdfdf",
-      "releaseDate": "20"
+      "id": "9705"
+    },
+    {
+      "id": "a4c2",
+      "name": null,
+      "gender": null,
+      "director": null,
+      "releaseDate": null
     }
   ]
 }
