@@ -138,10 +138,14 @@ async function printMovies() {
   // Crear el HTML usando map y luego unirlo en un solo string
   const moviesHTML = data.map(movie => {
     return `
-      <div class="movie" id="movie-${movie.id}">
-        Título: ${movie.name}, Género: ${movie.gender}, Director: ${movie.director}, Fecha de lanzamiento: ${movie['releaseDate']}
-        <button class="buttonDelete" onclick="deleteMovies(${movie.id})">Delete</button>
-        <button class="buttonUpdate" onclick="ShowUpdateMovie(${movie.id})">Update</button>
+      <div class="cardMovie">
+        <div class="movie" id="movie-${movie.id}">
+          Título: ${movie.name}<br> Género: ${movie.gender}<br> Director: ${movie.director}<br> Fecha de lanzamiento: ${movie['releaseDate']}<br>
+        </div>  
+        <div class="buttonsMovie">
+          <button class="btn btn-delete" onclick="deleteMovies(${movie.id})">Delete</button>
+          <button class="btn" onclick="ShowUpdateMovie(${movie.id})">Update</button>
+        </div>
       </div>
     `;
   }).join(""); // Unir todos los elementos en un solo string
@@ -184,7 +188,7 @@ async function showCreateMovies() {
         <input type="number" id="mRelease" name="mRelease"><br>
         
         <label for="mDirector">Director:</label><br>
-        <input type="text" id="mDirector" name="mDirector">  
+        <input type="text" id="mDirector" name="mDirector"><br>  
     </form>
     <button class="saveMovie" onclick="createMovie()">Crear</button>
   `;

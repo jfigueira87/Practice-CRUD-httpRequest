@@ -3,25 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
+    <title>Lista Películas</title>
+    <link rel="stylesheet" href="./source/css/style.css">
 </head>
 <body>
-    <h1>Lista de Películas</h1>
-    <div id="movies-container"></div>
-    <button id="buttonAddMovie">Agregar película</button>
+    <video autoplay muted loop id="background-video">
+        <source src="./assets/videos/body.mp4" type="video/mp4">
+        Tu navegador no soporta el elemento de video.
+    </video>
+    <header class="containerHeader">
+        <div class="containerTitle">
+            <h1 id="titlePage">Lista de Películas</h1>
+        </div>
+     </header>
+    <main>
+        <article id="movies-container">
+            <button class="btn" id="buttonAddMovie">Agregar película</button>
+        </article>
+        <article id="form">
+            
+        </article>
+        
+    </main>
     
-    <div id="form"></div>
-    <!--<form action="">
-        <label for="fname">Nombre:</label><br>
-        <input type="text" id="mName" name="mName" value="yo"><br>
-        <label for="lname">Genero:</label><br>
-        <input type="text" id="mGender" name="mGender"><br>    
-        <label for="lname">Año de lanzamiento:</label><br>
-        <input type="number" id="mRelease" name="mRelease"><br>
-        <label for="lname">Director:</label><br>
-        <input type="text" id="mDirector" name="mDirector">  
-    </form>-->
-    <script src="./src/services.js"></script>
+    <script src="./source/js/services.js"></script>
 </body>
 </html>
+

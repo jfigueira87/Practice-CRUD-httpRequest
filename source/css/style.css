@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=New+Amsterdam&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+#background-video {
+    position: fixed; /* Fija el video en la posición */
+    top: 0;
+    left: 0;
+    width: 100%; /* Abarca todo el ancho de la pantalla */
+    height: 100%; /* Abarca todo el alto de la pantalla */
+    object-fit: cover; /* Cubre el área sin distorsionar el video */
+    z-index: -1; /* Coloca el video detrás del contenido */
+}
+
+.containerHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.containerTitle{
+    display: flex;
+    background-color: white;
+    width: 30%;
+    justify-content: center;
+    margin: 2%;
+    border-radius: 5px;
+    background-color: black;
+}
+
+#titlePage{
+    font-family: "New Amsterdam", sans-serif;
+    font-weight: 400;
+    font-size: 4rem;
+    color: white;
+}
+
+
+#movies-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin: 0 5%;
+    grid-gap: 20px;
+}
+
+.cardMovie{
+    background-color: white;
+    border: 1px solid black;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.movie{
+    margin-bottom: 10px;
+}
+
+
+
