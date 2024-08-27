@@ -1,114 +1,8 @@
-//El mismo código pero está hecho con foreach y textcontent
-////////Read method: GET URL: http://localhost:8000/movies
-
-// const container = document.getElementById('movies-container');
-
-// async function getMovies() {
-//   //fetch le pasamos dos parametros ("url", objeto{})
-//   const response = await fetch(`http://localhost:8000/movies`, {
-//     method: "GET", //importante que sea en mayúscula
-//     headers: { 'Content-Type': 'application/json' }
-//   })
-//   const data = await response.json()
-//   return data
-// }
-
-// async function printMovies() {
-//   const data = await getMovies();
-//   data.forEach(movie => {
-//     const elementMovie = document.createElement('div');
-//     const buttonDelete = document.createElement('button')
-//     const buttonUpdate = document.createElement('button')
-//     elementMovie.textContent = `Título: ${movie.name}, Género: ${movie.gender}, Director: ${movie.director}, Fecha de lanzamiento: ${movie['releaseDate']},`;
-//     buttonDelete.textContent = 'Delete';
-//     buttonDelete.classList.add("buttonDelete")
-//     buttonUpdate.textContent = 'Update'
-//     buttonUpdate.classList.add("buttonUpdate")
-//     container.appendChild(elementMovie);
-//     container.appendChild(buttonDelete);
-//     container.appendChild(buttonUpdate);
-//     buttonDelete.addEventListener("click", function () {
-//       deleteMovies(movie.id, elementMovie, buttonDelete);
-//     });
-//     buttonUpdate.addEventListener("click", () => {
-//       updateMovies(movie.id)
-//     })
-//   })
-// }
-
-// /////////Delete method: DELETE URL: http://localhost:8000/movies/id
-
-// async function deleteMovies(id, elementMovie, buttonDelete) {
-//   const response = await fetch(`http://localhost:8000/movies/${id}`, { //IMPORTANTE las comillas deben ser las invertidas, para poder concatenar el id
-//     method: "DELETE", //importante que sea en mayúscula
-//     headers: { 'Content-Type': 'application/json' }
-//   })
-//   if (response.ok) {
-//     // Eliminar los elementos del DOM si la solicitud DELETE fue exitosa
-//     elementMovie.remove();
-//     buttonDelete.remove();
-//   } else {
-//     console.error("Error al eliminar la película");
-//   }
-// }
-
-// printMovies();
-
-
-// /////////Create method: POST URL: http://localhost:8000/movies
-
-// const addButton = document.getElementById("buttonAddMovie")
-
-// async function createMovies() {
-//   let nameMovie = prompt("Ingrese el nombre de la película")
-//   let genderMovie = prompt("Ingrese el género(Biografia, Aventura, Fantasía, Acción, etc)")
-//   let directorMovie = prompt("Ingrese el nombre de la mente maestra que dirigue la película")
-//   let releaseMovie = prompt("En que año se ha lanzado la película??")
-
-//   const response = await fetch(`http://localhost:8000/movies`, {
-//     method: "POST", //importante que sea en mayúscula
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify({
-//       name: nameMovie,
-//       gender: genderMovie,
-//       director: directorMovie,
-//       releaseDate: releaseMovie
-//     })
-//   })
-//   const data = await response.json();
-// }
-
-// addButton.addEventListener('click', () => {
-//   createMovies()
-// })
-
-// //////Update method: PUT URL: http://localhost:8000/movies/id
-
-// async function updateMovies(id) {
-//   let nameMovie = prompt("Ingrese el nombre de la película")
-//   let genderMovie = prompt("Ingrese el género(Biografia, Aventura, Fantasía, Acción, etc)")
-//   let directorMovie = prompt("Ingrese el nombre de la mente maestra que dirigue la película")
-//   let releaseMovie = prompt("En que año se ha lanzado la película??")
-
-//   const response = await fetch(`http://localhost:8000/movies/${id}`, {
-//     method: "PUT",
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify({
-//       name: nameMovie,
-//       gender: genderMovie,
-//       director: directorMovie,
-//       releaseDate: releaseMovie
-//     })
-//   })
-//   const data = await response.json()
-// }
-
-
-//El mismo código pero está hecho con Map e innerHtml
-
 const container = document.getElementById('movies-container');
 const containerForm = document.getElementById('form');
 const URL_API = `http://localhost:8000/movies`
+
+/////////Read method: GET URL: http://localhost:8000/movies//////////
 
 async function getMovies() {
   const response = await fetch(URL_API, {
@@ -116,11 +10,10 @@ async function getMovies() {
     headers: { 'Content-Type': 'application/json' }
   });
   const data = await response.json();
-
   return data;
 }
 
-//Hacer servicio para obtener una película por ID
+//Servicio para obtener una película por ID
 
 async function getOneMovie(id) {
   const response = await fetch(`${URL_API}/${id}`, {
@@ -143,40 +36,50 @@ async function printMovies() {
           Título: ${movie.name}<br> Género: ${movie.gender}<br> Director: ${movie.director}<br> Fecha de lanzamiento: ${movie['releaseDate']}<br>
         </div>  
         <div class="buttonsMovie">
-          <button class="btn btn-delete" onclick="deleteMovies(${movie.id})">Delete</button>
-          <button class="btn" onclick="ShowUpdateMovie(${movie.id})">Update</button>
+          <button class="btn btn-red" onclick="deleteMovies('${movie.id}')">Delete</button>
+          <button class="btn" onclick="ShowUpdateMovie('${movie.id}')">Update</button>
         </div>
       </div>
     `;
   }).join(""); // Unir todos los elementos en un solo string
   container.innerHTML = moviesHTML; // Asignar el HTML generado al contenedor
 }
+printMovies();
+
+/////////Delete method: DELETE //////////////////
 
 async function deleteMovies(id) {
-  const response = await fetch(`${URL_API}/${id}`, {
-    method: "DELETE",
-    headers: { 'Content-Type': 'application/json' }
-  });
-  if (response.ok) {
-    printMovies();
-    // const movieElement = document.getElementById(`movie-${id}`);
-    // movieElement.remove(); // Eliminar el elemento directamente usando su ID
-  } else {
-    console.error("Error al eliminar la película");
+  try {
+    const response = await fetch(`${URL_API}/${id}`, {
+      method: "DELETE",
+      headers: { 'Content-Type': 'application/json' }
+    });
+    
+    if (response.ok) {
+      printMovies();  // Actualiza la lista si es exitoso
+    } else {
+      console.error("Error al eliminar la película");
+    }
+  } catch (error) {
+    console.error("Error en la solicitud:", error);
   }
 }
 
-printMovies();
 
-const addButton = document.getElementById("buttonAddMovie");
-addButton.addEventListener('click', () => {
-  showCreateMovies()
-})
-//Método Create, POST
+//deleteMovies("efa3");
+
+//Función para quitar el formulario de la pantalla y desactivar el Overlay
+function closeUpdateForm(){
+  containerForm.innerHTML=""
+  document.getElementById('overlay').style.display = 'none';
+}
+
+///////////Método Create, POST//////////////////
 
 async function showCreateMovies() {
-
+  document.getElementById('overlay').style.display = 'block';
   containerForm.innerHTML = `
+  <div class="containerForm">
     <form action="">
         <label for="mName">Nombre:</label><br>
         <input type="text" id="mName" name="mName"><br>
@@ -190,7 +93,11 @@ async function showCreateMovies() {
         <label for="mDirector">Director:</label><br>
         <input type="text" id="mDirector" name="mDirector"><br>  
     </form>
-    <button class="saveMovie" onclick="createMovie()">Crear</button>
+  </div>
+  <div class="containerButtons">
+    <button class="btn" onclick="createMovie()">Crear</button>
+    <button class="btn btn-red" onclick= "closeUpdateForm()">Cancelar</button>
+  </div>
   `;
 }
 
@@ -216,19 +123,24 @@ async function createMovie() {
   });
   const data = await response.json();
   printMovies();
+  closeUpdateForm();
   return data
 }
 
+const addButton = document.getElementById("buttonAddMovie");
 addButton.addEventListener('click', () => {
-  createMovies();
-});
+  showCreateMovies()
+})
 
-//Método Update, PUT
+
+/////////Método Update, PUT///////////////////
 
 async function ShowUpdateMovie(id) {
   const elementDbMovie = await getOneMovie(id);
+  document.getElementById('overlay').style.display = 'block';
   containerForm.innerHTML = `
-    <form action="">
+    <div class="containerForm">
+      <form action="">
         <label for="mName">Nombre:</label><br>
         <input type="text" id="mName" name="mName" value="${elementDbMovie.name}"><br>
         
@@ -239,9 +151,13 @@ async function ShowUpdateMovie(id) {
         <input type="number" id="mRelease" name="mRelease" value="${elementDbMovie.releaseDate}"><br>
         
         <label for="mDirector">Director:</label><br>
-        <input type="text" id="mDirector" name="mDirector" value="${elementDbMovie.director}">  
-    </form>
-    <button class="saveMovie" onclick="UpdateMovie(${elementDbMovie.id})">Guardar</button>
+        <input type="text" id="mDirector" name="mDirector" value="${elementDbMovie.director}"><br>  
+      </form>
+    </div>
+    <div class="containerButtons">
+      <button class="btn" onclick="UpdateMovie(${elementDbMovie.id})">Guardar</button>
+      <button class="btn btn-red" onclick= "closeUpdateForm()">Cancelar</button>
+    </div>
   `;
 }
 
@@ -265,7 +181,7 @@ async function UpdateMovie(id) {
   });
   const data = await response.json();
   printMovies();
+  closeUpdateForm();
   return data
 
 }
-

@@ -1,18 +1,18 @@
 {
   "movies": [
     {
-      "name": "Forrest Gump 2",
+      "name": "Forrest Gump 6",
       "gender": "Drama, Romance",
       "releaseDate": "1994",
       "director": "Robert Zemeckis",
       "id": "14"
     },
     {
-      "id": "15",
-      "name": "Star Wars: Episodio V - El Imperio Contraataca",
+      "name": "Star Wars: Episodio VI",
       "gender": "Acción, Aventura",
-      "releaseDate": 1980,
-      "director": "Irvin Kershner"
+      "releaseDate": "1980",
+      "director": "Irvin Kershner",
+      "id": "15"
     },
     {
       "id": "16",
@@ -36,18 +36,11 @@
       "director": "Joss Whedon"
     },
     {
-      "id": "19",
-      "name": "Jurassic Park",
+      "name": "Jurassic Park 2",
       "gender": "Aventura, Ciencia Ficción",
-      "releaseDate": 1993,
-      "director": "Steven Spielberg"
-    },
-    {
-      "id": "20",
-      "name": "El Club de la Pelea",
-      "gender": "Drama",
-      "releaseDate": 1999,
-      "director": "David Fincher"
+      "releaseDate": "1993",
+      "director": "Steven Spielberg",
+      "id": "19"
     },
     {
       "id": "21",
@@ -55,20 +48,6 @@
       "gender": "Aventura, Ciencia Ficción",
       "releaseDate": 2014,
       "director": "Christopher Nolan"
-    },
-    {
-      "id": "22",
-      "name": "Coco",
-      "gender": "Animación, Aventura",
-      "releaseDate": 2017,
-      "director": "Lee Unkrich, Adrian Molina"
-    },
-    {
-      "id": "23",
-      "name": "El Gran Hotel Budapest",
-      "gender": "Comedia, Aventura",
-      "releaseDate": 2014,
-      "director": "Wes Anderson"
     },
     {
       "id": "24",
@@ -92,25 +71,11 @@
       "director": "George Miller"
     },
     {
-      "id": "27",
-      "name": "Toy Story",
-      "gender": "Animación, Aventura",
-      "releaseDate": 1995,
-      "director": "John Lasseter"
-    },
-    {
       "id": "28",
       "name": "Whiplash",
       "gender": "Drama, Musical",
       "releaseDate": 2014,
       "director": "Damien Chazelle"
-    },
-    {
-      "id": "29",
-      "name": "Avatar",
-      "gender": "Acción, Aventura",
-      "releaseDate": 2009,
-      "director": "James Cameron"
     },
     {
       "id": "30",
@@ -127,32 +92,18 @@
       "releaseDate": "2024"
     },
     {
-      "id": "6e55",
+      "id": "655",
       "name": "agregando",
       "gender": "fantasia",
       "director": "sara",
       "releaseDate": "2014"
     },
     {
-      "id": "04b1",
+      "id": "041",
       "name": "Aprendiendo Javascript",
       "gender": "Fantasia",
       "director": "Jonnatha",
       "releaseDate": "2024"
-    },
-    {
-      "name": "jjjjj",
-      "gender": "fdfd",
-      "releaseDate": "20",
-      "director": "fdfdf",
-      "id": "9705"
-    },
-    {
-      "id": "a4c2",
-      "name": null,
-      "gender": null,
-      "director": null,
-      "releaseDate": null
     },
     {
       "id": "7063",
@@ -162,18 +113,151 @@
       "director": "yo"
     },
     {
-      "id": "4b39",
+      "id": "439",
       "name": "El junior vuelve",
       "gender": "Accion",
       "releaseDate": "2024",
       "director": "Yo otra vez"
     },
     {
-      "id": "6dc6",
+      "id": "66",
       "name": "rapido y furioso",
       "gender": "accion",
       "releaseDate": "2010",
       "director": "Yamato"
+    },
+    {
+      "id": "31",
+      "name": "Inception",
+      "gender": "Acción, Ciencia Ficción",
+      "releaseDate": 2010,
+      "director": "Christopher Nolan"
+    },
+    {
+      "id": "32",
+      "name": "The Matrix",
+      "gender": "Acción, Ciencia Ficción",
+      "releaseDate": 1999,
+      "director": "Lana Wachowski, Lilly Wachowski"
+    },
+    {
+      "id": "33",
+      "name": "Pulp Fiction",
+      "gender": "Crimen, Drama",
+      "releaseDate": 1994,
+      "director": "Quentin Tarantino"
+    },
+    {
+      "id": "34",
+      "name": "The Shawshank Redemption",
+      "gender": "Drama",
+      "releaseDate": 1994,
+      "director": "Frank Darabont"
+    },
+    {
+      "id": "35",
+      "name": "Forrest Gump",
+      "gender": "Drama, Romance",
+      "releaseDate": 1994,
+      "director": "Robert Zemeckis"
+    },
+    {
+      "id": "36",
+      "name": "Fight Club",
+      "gender": "Drama",
+      "releaseDate": 1999,
+      "director": "David Fincher"
+    },
+    {
+      "id": "37",
+      "name": "The Dark Knight",
+      "gender": "Acción, Crimen, Drama",
+      "releaseDate": 2008,
+      "director": "Christopher Nolan"
+    },
+    {
+      "id": "38",
+      "name": "Gladiator",
+      "gender": "Acción, Aventura, Drama",
+      "releaseDate": 2000,
+      "director": "Ridley Scott"
+    },
+    {
+      "id": "39",
+      "name": "The Godfather",
+      "gender": "Crimen, Drama",
+      "releaseDate": 1972,
+      "director": "Francis Ford Coppola"
+    },
+    {
+      "id": "40",
+      "name": "The Godfather: Part II",
+      "gender": "Crimen, Drama",
+      "releaseDate": 1974,
+      "director": "Francis Ford Coppola"
+    },
+    {
+      "id": "41",
+      "name": "Parasite",
+      "gender": "Comedia, Drama, Thriller",
+      "releaseDate": 2019,
+      "director": "Bong Joon-ho"
+    },
+    {
+      "id": "42",
+      "name": "The Lion King",
+      "gender": "Animación, Aventura, Drama",
+      "releaseDate": 1994,
+      "director": "Roger Allers, Rob Minkoff"
+    },
+    {
+      "id": "43",
+      "name": "Avatar",
+      "gender": "Acción, Aventura, Ciencia Ficción",
+      "releaseDate": 2009,
+      "director": "James Cameron"
+    },
+    {
+      "id": "44",
+      "name": "The Departed",
+      "gender": "Crimen, Drama, Suspense",
+      "releaseDate": 2006,
+      "director": "Martin Scorsese"
+    },
+    {
+      "id": "45",
+      "name": "The Revenant",
+      "gender": "Acción, Aventura, Drama",
+      "releaseDate": 2015,
+      "director": "Alejandro G. Iñárritu"
+    },
+    {
+      "id": "46",
+      "name": "Joker",
+      "gender": "Crimen, Drama, Thriller",
+      "releaseDate": 2019,
+      "director": "Todd Phillips"
+    },
+    {
+      "id": "47",
+      "name": "Blade Runner 2049",
+      "gender": "Drama, Ciencia Ficción, Misterio",
+      "releaseDate": 2017,
+      "director": "Denis Villeneuve"
+    },
+    {
+      "id": "48",
+      "name": "The Grand Budapest Hotel",
+      "gender": "Comedia, Drama, Misterio",
+      "releaseDate": 2014,
+      "director": "Wes Anderson"
+    },
+    {
+      "id": "49",
+      "name": "Mad Max: Fury Road",
+      "gender": "Acción, Aventura, Ciencia Ficción",
+      "releaseDate": 2015,
+      "director": "George Miller"
     }
   ]
 }
