@@ -93,7 +93,6 @@ async function deleteMovies(id) {
   }
 }
 
-
 //Función para quitar el formulario de la pantalla y desactivar el Overlay
 function closeUpdateForm(){
   containerForm.innerHTML=""
@@ -109,16 +108,25 @@ async function showCreateMovies() {
     <form action="">
         <label for="mName">Nombre:</label><br>
         <input type="text" id="mName" name="mName" required><br>
-        
+
         <label for="mGender">Género:</label><br>
-        <input type="text" id="mGender" name="mGender" required><br>
-        
+        <select id="mGender" name="mGender" required>
+        <option value="" disabled selected>Selecciona un género</option>
+        <option value="Drama">Drama</option>
+        <option value="Comedia">Comedia</option>
+        <option value="Terror">Terror</option>
+        <option value="Acción">Acción</option>
+        <option value="Aventura">Aventura</option>
+        <option value="Suspenso">Suspenso</option>
+        <option value="Ciencia ficción">Ciencia ficción</option>
+        </select><br>
+
         <label for="mRelease">Año de lanzamiento:</label><br>
         <input list="years" type="text" pattern="\d+" inputmode="numeric" id="mRelease" name="mRelease" required><br>
-        
+
         <label for="mDirector">Director:</label><br>
         <input type="text" id="mDirector" name="mDirector" required><br>
-        
+
         <datalist id="years">
         </datalist>
     </form>
@@ -172,7 +180,7 @@ async function createMovie() {
     });
   }
 
-  if(mRelease<1985){
+  if(mRelease<1895){
     return Swal.fire({
       icon: 'warning',
       title: 'Año de lanzamiento erróneo',

@@ -96,6 +96,12 @@ main{
            
 }
 
+#mGender{
+    width: 304px;
+    border-radius: 2px;
+    height: 35px;
+}
+
 #overlay {
     position: fixed;
     top: 0;
