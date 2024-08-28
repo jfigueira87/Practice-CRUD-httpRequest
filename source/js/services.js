@@ -36,7 +36,7 @@ async function printMovies() {
           Título: ${movie.name}<br> Género: ${movie.gender}<br> Director: ${movie.director}<br> Fecha de lanzamiento: ${movie['releaseDate']}<br>
         </div>  
         <div class="buttonsMovie">
-          <button class="btn btn-red" onclick="deleteMovies('${movie.id}')">Delete</button>
+          <button class="btn btn-red" onclick="confirmDelete('${movie.id}')">Delete</button>
           <button class="btn" onclick="ShowUpdateMovie('${movie.id}')">Update</button>
         </div>
       </div>
@@ -48,6 +48,24 @@ printMovies();
 
 /////////Delete method: DELETE //////////////////
 
+function confirmDelete(id) {
+  Swal.fire({
+    title: '¿Estás seguro que quieres eliminar?',
+    text: "¡No podrás revertir esto!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Sí, eliminar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      deleteMovies(id); 
+    }
+  });
+}
+
+// Método para eliminar la película con el fetch
 async function deleteMovies(id) {
   try {
     const response = await fetch(`${URL_API}/${id}`, {
@@ -56,17 +74,25 @@ async function deleteMovies(id) {
     });
     
     if (response.ok) {
-      printMovies();  // Actualiza la lista si es exitoso
+      printMovies(); 
     } else {
-      console.error("Error al eliminar la película");
+      Swal.fire({
+        title: 'Error',
+        text: 'Hubo un problema al eliminar la película.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
     }
   } catch (error) {
-    console.error("Error en la solicitud:", error);
+    Swal.fire({
+      title: 'Error',
+      text: 'Error en la solicitud: ' + error.message,
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
   }
 }
 
-
-//deleteMovies("efa3");
 
 //Función para quitar el formulario de la pantalla y desactivar el Overlay
 function closeUpdateForm(){
