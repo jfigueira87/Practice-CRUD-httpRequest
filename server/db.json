@@ -15,11 +15,11 @@
       "id": "15"
     },
     {
-      "id": "16",
-      "name": "La La Land",
+      "name": "La La Land 2",
       "gender": "Comedia, Drama, Musical",
-      "releaseDate": 2016,
-      "director": "Damien Chazelle"
+      "releaseDate": "2016",
+      "director": "Damien Chazelle",
+      "id": "16"
     },
     {
       "id": "17",
@@ -225,11 +225,11 @@
       "director": "Martin Scorsese"
     },
     {
-      "id": "45",
-      "name": "The Revenant",
+      "name": "The Revenant 4",
       "gender": "Acción, Aventura, Drama",
-      "releaseDate": 2015,
-      "director": "Alejandro G. Iñárritu"
+      "releaseDate": "2015",
+      "director": "Alejandro G. Iñárritu",
+      "id": "45"
     },
     {
       "id": "46",
@@ -244,20 +244,6 @@
       "gender": "Drama, Ciencia Ficción, Misterio",
       "releaseDate": 2017,
       "director": "Denis Villeneuve"
-    },
-    {
-      "id": "48",
-      "name": "The Grand Budapest Hotel",
-      "gender": "Comedia, Drama, Misterio",
-      "releaseDate": 2014,
-      "director": "Wes Anderson"
-    },
-    {
-      "id": "49",
-      "name": "Mad Max: Fury Road",
-      "gender": "Acción, Aventura, Ciencia Ficción",
-      "releaseDate": 2015,
-      "director": "George Miller"
     }
   ]
 }

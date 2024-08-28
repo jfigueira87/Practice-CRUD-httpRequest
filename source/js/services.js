@@ -41,8 +41,8 @@ async function printMovies() {
         </div>
       </div>
     `;
-  }).join(""); // Unir todos los elementos en un solo string
-  container.innerHTML = moviesHTML; // Asignar el HTML generado al contenedor
+  }).join("");
+  container.innerHTML = moviesHTML;
 }
 printMovies();
 
@@ -60,7 +60,7 @@ function confirmDelete(id) {
     cancelButtonText: 'Cancelar'
   }).then((result) => {
     if (result.isConfirmed) {
-      deleteMovies(id); 
+      deleteMovies(id);
     }
   });
 }
@@ -72,9 +72,9 @@ async function deleteMovies(id) {
       method: "DELETE",
       headers: { 'Content-Type': 'application/json' }
     });
-    
+
     if (response.ok) {
-      printMovies(); 
+      printMovies();
     } else {
       Swal.fire({
         title: 'Error',
@@ -94,8 +94,8 @@ async function deleteMovies(id) {
 }
 
 //Función para quitar el formulario de la pantalla y desactivar el Overlay
-function closeUpdateForm(){
-  containerForm.innerHTML=""
+function closeUpdateForm() {
+  containerForm.innerHTML = ""
   document.getElementById('overlay').style.display = 'none';
 }
 
@@ -140,15 +140,14 @@ async function showCreateMovies() {
 
 
   //Asignar un listado desplegable con los años desde 1895 hasta 2024
-  const startYear = 1895; // Año de inicio del rango
-  const endYear = 2024; // Año de fin del rango
+  const startYear = 1895; 
+  const endYear = 2024; 
   const yearList = document.getElementById('years');
 
-  // Generar opciones de años dentro del rango
-  for (let year = startYear; year <= endYear; year++) {
+    for (let year = startYear; year <= endYear; year++) {
     const option = document.createElement('option');
-    option.value = year; // Asigna el año como valor
-    yearList.appendChild(option); // Añade la opción al datalist
+    option.value = year; 
+    yearList.appendChild(option); 
   }
 }
 
@@ -180,7 +179,7 @@ async function createMovie() {
     });
   }
 
-  if(mRelease<1895){
+  if (mRelease < 1895) {
     return Swal.fire({
       icon: 'warning',
       title: 'Año de lanzamiento erróneo',
@@ -270,9 +269,16 @@ async function UpdateMovie(id) {
 
     })
   });
-  const data = await response.json();
-  printMovies();
-  closeUpdateForm();
-  return data
-
+  if (response.ok){
+    Swal.fire({
+      title: 'Hecho',
+      text: 'Se ha actualizado correctamente',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    });
+    const data = await response.json();
+    printMovies();
+    closeUpdateForm();
+    return data
+  }
 }
