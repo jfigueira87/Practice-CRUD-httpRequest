@@ -54,8 +54,8 @@ function confirmDelete(id) {
     text: "¡No podrás revertir esto!",
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#d33',
-    cancelButtonColor: '#3085d6',
+    confirmButtonColor: '#4361ee',
+    cancelButtonColor: '#d00000',
     confirmButtonText: 'Sí, eliminar',
     cancelButtonText: 'Cancelar'
   }).then((result) => {
@@ -114,10 +114,13 @@ async function showCreateMovies() {
         <input type="text" id="mGender" name="mGender" required><br>
         
         <label for="mRelease">Año de lanzamiento:</label><br>
-        <input type="number" id="mRelease" name="mRelease" required><br>
+        <input list="years" type="text" pattern="\d+" inputmode="numeric" id="mRelease" name="mRelease" required><br>
         
         <label for="mDirector">Director:</label><br>
-        <input type="text" id="mDirector" name="mDirector" required><br>  
+        <input type="text" id="mDirector" name="mDirector" required><br>
+        
+        <datalist id="years">
+        </datalist>
     </form>
   </div>
   <div class="containerButtons">
@@ -125,19 +128,56 @@ async function showCreateMovies() {
     <button class="btn btn-red" onclick= "closeUpdateForm()">Cancelar</button>
   </div>
   `;
+
+
+
+  //Asignar un listado desplegable con los años desde 1895 hasta 2024
+  const startYear = 1895; // Año de inicio del rango
+  const endYear = 2024; // Año de fin del rango
+  const yearList = document.getElementById('years');
+
+  // Generar opciones de años dentro del rango
+  for (let year = startYear; year <= endYear; year++) {
+    const option = document.createElement('option');
+    option.value = year; // Asigna el año como valor
+    yearList.appendChild(option); // Añade la opción al datalist
+  }
 }
 
 async function createMovie() {
+
   const mName = document.getElementById('mName').value;
   const mGender = document.getElementById('mGender').value;
   const mRelease = document.getElementById('mRelease').value;
   const mDirector = document.getElementById('mDirector').value;
+
+  if (!/^\d+$/.test(mRelease)) {
+    // Si el valor no coincide con la expresión regular, muestra un mensaje de error o realiza alguna acción
+    return Swal.fire({
+      icon: 'warning',
+      title: 'Año de lanzamiento incorrecto',
+      text: 'Por favor ingresa solo números y que además sean positivos',
+      confirmButtonColor: '#4361ee',
+      confirmButtonText: 'OK'
+    });
+  }
 
   if (!mName || !mGender || !mRelease || !mDirector) {
     return Swal.fire({
       icon: 'warning',
       title: 'Campos incompletos',
       text: 'Debe completar todos los campos',
+      confirmButtonColor: '#4361ee',
+      confirmButtonText: 'OK'
+    });
+  }
+
+  if(mRelease<1985){
+    return Swal.fire({
+      icon: 'warning',
+      title: 'Año de lanzamiento erróneo',
+      text: 'En ese año no se había creado ninguna película, no mientas ;)',
+      confirmButtonColor: '#4361ee',
       confirmButtonText: 'OK'
     });
   }

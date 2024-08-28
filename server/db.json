@@ -15,11 +15,11 @@
       "id": "15"
     },
     {
-      "id": "16",
-      "name": "La La Land",
+      "name": "La La Land 2",
       "gender": "Comedia, Drama, Musical",
-      "releaseDate": 2016,
-      "director": "Damien Chazelle"
+      "releaseDate": "2016",
+      "director": "Damien Chazelle",
+      "id": "16"
     },
     {
       "id": "17",
@@ -216,13 +216,6 @@
       "gender": "Acción, Aventura, Ciencia Ficción",
       "releaseDate": 2009,
       "director": "James Cameron"
-    },
-    {
-      "id": "44",
-      "name": "The Departed",
-      "gender": "Crimen, Drama, Suspense",
-      "releaseDate": 2006,
-      "director": "Martin Scorsese"
     }
   ]
 }
