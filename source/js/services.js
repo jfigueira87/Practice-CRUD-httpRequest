@@ -82,16 +82,16 @@ async function showCreateMovies() {
   <div class="containerForm">
     <form action="">
         <label for="mName">Nombre:</label><br>
-        <input type="text" id="mName" name="mName"><br>
+        <input type="text" id="mName" name="mName" required><br>
         
         <label for="mGender">Género:</label><br>
-        <input type="text" id="mGender" name="mGender"><br>
+        <input type="text" id="mGender" name="mGender" required><br>
         
         <label for="mRelease">Año de lanzamiento:</label><br>
-        <input type="number" id="mRelease" name="mRelease"><br>
+        <input type="number" id="mRelease" name="mRelease" required><br>
         
         <label for="mDirector">Director:</label><br>
-        <input type="text" id="mDirector" name="mDirector"><br>  
+        <input type="text" id="mDirector" name="mDirector" required><br>  
     </form>
   </div>
   <div class="containerButtons">
@@ -102,30 +102,47 @@ async function showCreateMovies() {
 }
 
 async function createMovie() {
-
   const mName = document.getElementById('mName').value;
   const mGender = document.getElementById('mGender').value;
   const mRelease = document.getElementById('mRelease').value;
   const mDirector = document.getElementById('mDirector').value;
 
+  if (!mName || !mGender || !mRelease || !mDirector) {
+    return Swal.fire({
+      icon: 'warning',
+      title: 'Campos incompletos',
+      text: 'Debe completar todos los campos',
+      confirmButtonText: 'OK'
+    });
+  }
 
-  const response = await fetch(URL_API, {
+  try {
+    const response = await fetch(URL_API, {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: mName,
+        gender: mGender,
+        releaseDate: mRelease,
+        director: mDirector,
+      })
+    });
 
-    method: "POST",
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name: mName,
-      gender: mGender,
-      releaseDate: mRelease,
-      director: mDirector,
+    const data = await response.json();
+    printMovies();
+    closeUpdateForm();
+    return data;
 
-    })
-  });
-  const data = await response.json();
-  printMovies();
-  closeUpdateForm();
-  return data
+  } catch (error) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Hubo un problema al crear la película',
+      confirmButtonText: 'OK'
+    });
+  }
 }
+
 
 const addButton = document.getElementById("buttonAddMovie");
 addButton.addEventListener('click', () => {
