@@ -177,6 +177,16 @@ async function createMovie() {
   const mRelease = document.getElementById('mRelease').value;
   const mDirector = document.getElementById('mDirector').value;
 
+  if (!mName || !mGender || !mRelease || !mDirector) {
+    return Swal.fire({
+      icon: 'warning',
+      title: 'Campos incompletos',
+      text: 'Debe completar todos los campos',
+      confirmButtonColor: '#4361ee',
+      confirmButtonText: 'OK'
+    });
+  }
+
   if (!/^\d+$/.test(mRelease)) {
     // Si el valor no coincide con la expresión regular, muestra un mensaje de error o realiza alguna acción
     return Swal.fire({
@@ -188,17 +198,7 @@ async function createMovie() {
     });
   }
 
-  if (!mName || !mGender || !mRelease || !mDirector) {
-    return Swal.fire({
-      icon: 'warning',
-      title: 'Campos incompletos',
-      text: 'Debe completar todos los campos',
-      confirmButtonColor: '#4361ee',
-      confirmButtonText: 'OK'
-    });
-  }
-
-  if (mRelease < 1895) {
+    if (mRelease < 1895) {
     return Swal.fire({
       icon: 'warning',
       title: 'Año de lanzamiento erróneo',
