@@ -5,25 +5,44 @@ const URL_API = `http://localhost:8000/movies`
 /////////Read method: GET URL: http://localhost:8000/movies//////////
 
 async function getMovies() {
-  const response = await fetch(URL_API, {
-    method: "GET",
-    headers: { 'Content-Type': 'application/json' }
-  });
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(URL_API, {
+      method: "GET",
+      headers: { 'Content-Type': 'application/json' }
+    });
+    if (!response.ok) throw new Error('Error al obtener las películas');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Hubo un problema al obtener las películas: ' + error.message,
+      confirmButtonText: 'OK'
+    });
+  }
 }
 
 //Servicio para obtener una película por ID
 
 async function getOneMovie(id) {
-  const response = await fetch(`${URL_API}/${id}`, {
-    method: "GET",
-    headers: { 'Content-Type': 'application/json' }
-  });
-  const data = await response.json();
-  console.log(data)
-
-  return data;
+  try {
+    const response = await fetch(`${URL_API}/${id}`, {
+      method: "GET",
+      headers: { 'Content-Type': 'application/json' }
+    });
+    if (!response.ok) throw new Error('Error al obtener la película');
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Hubo un problema al obtener los detalles de la película: ' + error.message,
+      confirmButtonText: 'OK'
+    });
+  }
 }
 
 async function printMovies() {
@@ -101,7 +120,7 @@ function closeUpdateForm() {
 
 ///////////Método Create, POST//////////////////
 
-async function showCreateMovies() {
+function showCreateMovies() {
   document.getElementById('overlay').style.display = 'block';
   containerForm.innerHTML = `
   <div class="containerForm">
@@ -226,59 +245,80 @@ addButton.addEventListener('click', () => {
 /////////Método Update, PUT///////////////////
 
 async function ShowUpdateMovie(id) {
-  const elementDbMovie = await getOneMovie(id);
-  document.getElementById('overlay').style.display = 'block';
-  containerForm.innerHTML = `
-    <div class="containerForm">
-      <form action="">
-        <label for="mName">Nombre:</label><br>
-        <input type="text" id="mName" name="mName" value="${elementDbMovie.name}"><br>
-        
-        <label for="mGender">Género:</label><br>
-        <input type="text" id="mGender" name="mGender" value="${elementDbMovie.gender}"><br>
-        
-        <label for="mRelease">Año de lanzamiento:</label><br>
-        <input type="number" id="mRelease" name="mRelease" value="${elementDbMovie.releaseDate}"><br>
-        
-        <label for="mDirector">Director:</label><br>
-        <input type="text" id="mDirector" name="mDirector" value="${elementDbMovie.director}"><br>  
-      </form>
-    </div>
-    <div class="containerButtons">
-      <button class="btn" onclick="UpdateMovie(${elementDbMovie.id})">Guardar</button>
-      <button class="btn btn-red" onclick= "closeUpdateForm()">Cancelar</button>
-    </div>
-  `;
-}
-
-async function UpdateMovie(id) {
-
-  const mName = document.getElementById('mName').value;
-  const mGender = document.getElementById('mGender').value;
-  const mRelease = document.getElementById('mRelease').value;
-  const mDirector = document.getElementById('mDirector').value;
-
-  const response = await fetch(`${URL_API}/${id}`, {
-    method: "PUT",
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name: mName,
-      gender: mGender,
-      releaseDate: mRelease,
-      director: mDirector,
-
-    })
-  });
-  if (response.ok){
+  try {
+    const elementDbMovie = await getOneMovie(id);
+    document.getElementById('overlay').style.display = 'block';
+    containerForm.innerHTML = `
+      <div class="containerForm">
+        <form action="">
+          <label for="mName">Nombre:</label><br>
+          <input type="text" id="mName" name="mName" value="${elementDbMovie.name}"><br>
+          
+          <label for="mGender">Género:</label><br>
+          <input type="text" id="mGender" name="mGender" value="${elementDbMovie.gender}"><br>
+          
+          <label for="mRelease">Año de lanzamiento:</label><br>
+          <input type="number" id="mRelease" name="mRelease" value="${elementDbMovie.releaseDate}"><br>
+          
+          <label for="mDirector">Director:</label><br>
+          <input type="text" id="mDirector" name="mDirector" value="${elementDbMovie.director}"><br>  
+        </form>
+      </div>
+      <div class="containerButtons">
+        <button class="btn" onclick="UpdateMovie(${elementDbMovie.id})">Guardar</button>
+        <button class="btn btn-red" onclick= "closeUpdateForm()">Cancelar</button>
+      </div>
+    `;
+  } catch (error) {
     Swal.fire({
-      title: 'Hecho',
-      text: 'Se ha actualizado correctamente',
-      icon: 'success',
+      icon: 'error',
+      title: 'Error',
+      text: 'Hubo un problema al obtener los detalles de la película: ' + error.message,
       confirmButtonText: 'OK'
     });
-    const data = await response.json();
-    printMovies();
-    closeUpdateForm();
-    return data
   }
 }
+
+
+async function UpdateMovie(id) {
+  try {
+    const mName = document.getElementById('mName').value;
+    const mGender = document.getElementById('mGender').value;
+    const mRelease = document.getElementById('mRelease').value;
+    const mDirector = document.getElementById('mDirector').value;
+
+    const response = await fetch(`${URL_API}/${id}`, {
+      method: "PUT",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: mName,
+        gender: mGender,
+        releaseDate: mRelease,
+        director: mDirector,
+      })
+    });
+
+    if (response.ok) {
+      Swal.fire({
+        title: 'Hecho',
+        text: 'Se ha actualizado correctamente',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      });
+      const data = await response.json();
+      printMovies();
+      closeUpdateForm();
+      return data;
+    } else {
+      throw new Error('Error al actualizar la película');
+    }
+  } catch (error) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Hubo un problema al actualizar la película: ' + error.message,
+      confirmButtonText: 'OK'
+    });
+  }
+}
+
